@@ -23,6 +23,7 @@
 	// Sound ausgeben wenn Pause
 	// Sound ausgeben wenn Play
 	
+	var PointerColor;
 	// Farben setzen
 	var innercolor="rgb(255,255,255)"; // Innere Farbe des Ziffernblatts
 	var backgroundcolor="rgb(255,255,255)"; //Hintergrundfarbe des Ziffernblatts
@@ -132,12 +133,10 @@
 	}
 
    	function draw(){
-   			uhrstellen=zeitverlauf;
    			//if timer is ended, start finishing function
    			if(zeitverlauf==1) {
    				finishTimer();
    			}
-   			
           	//Canvas säubern
           	zeiger.clearRect(0,0,1950,1080);
           		
@@ -145,12 +144,14 @@
         	zeiger.beginPath();    
         	zeiger.moveTo(startingpointH,startingpointV)
         	zeiger.lineTo(startingpointH,startingpointV-radius);
-        	zeiger.arc(startingpointH,startingpointV,radius,-Math.PI/2,-Math.PI/2-((uhrstellen/1800)*Math.PI),true);
+        	zeiger.arc(startingpointH,startingpointV,radius,-Math.PI/2,-Math.PI/2-((zeitverlauf/1800)*Math.PI),true);
         	zeiger.lineTo(startingpointH,startingpointV);
         	//Kreis in der Mitte
         	//zeiger.strokeStyle=handoutlinecolor;
         	zeiger.arc(startingpointH,startingpointV,25,0,2*Math.PI,true)
-        	zeiger.fillStyle = handcolor;
+		PointerColor = Math.round(100.0+(255-150)*(1.0-(zeitverlauf/3600.0)));
+		//console.log())
+		zeiger.fillStyle = 'rgb(' + PointerColor + ' ,0,0)';
         	//zeiger.stroke();
         	zeiger.fill();
         	//hintergrund.drawImage(draggingImg,250,250,draggingImg.width,draggingImg.height);
@@ -253,7 +254,8 @@
 			
 			//TODO: Flexibel, falls Zeigerfarbe umgestellt wird
 			// Vergleich der pixelfarbe mit den farben des Zeigers
-			if (pix[0]=='255' && pix[1]=='0' && pix[2]=='0') {
+			
+			if (pix[0]==PointerColor && pix[1]=='0' && pix[2]=='0') {
 					return true;
 				} else if (pix[0]==handcolor.substring(4,7) && pix[1]==handcolor.substring(8,11) && pix[2]==handcolor.substring(12,15)) {
 					return true;
