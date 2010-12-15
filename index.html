@@ -3,24 +3,11 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="de-DE">
 <head>
-	<title>Zeitdruck by inventedhere.de</title>
+	<title>zeitdruck by inventedhere.de</title>
 	<link rel="stylesheet" href="zeitdruck.css" type="text/css" />
 	<embed NAME="gong" src="beep.wav" LOOP=FALSE AUTOSTART=FALSE MASTERSOUND HIDDEN=TRUE WIDTH=0 HEIGHT=0></embed>
 <script language="JavaScript">
 <!--
-		
-		
-	//Version History
-	//13.12.2010 fs +sound hinzugefügt, 2 optionen
-	//				+visuellen "flash" hinzugefügt am Ende des Timers
-	//				+Time is up box hinzugefügt, Reset funktionalität felt!!!	
-		
-	//TODO
-	// Bild ausgeben zum Draggen
-	// Text einbauen
-	// Sound ausgeben wenn Pause
-	// Sound ausgeben wenn Play
-	
 	var PointerColor;
 	// Farben setzen
 	var innercolor="rgb(255,255,255)"; // Innere Farbe des Ziffernblatts
@@ -250,8 +237,7 @@
 			// Pixeldaten vom context holen, gibt array zurück [R],[G],[B],[Alpha]
 			var pix = zeiger.getImageData(relativZumCanvas(e,'x'), relativZumCanvas(e,'y'), 1, 1).data;
 			
-			//TODO: Flexibel, falls Zeigerfarbe umgestellt wird
-			// Vergleich der pixelfarbe mit den farben des Zeigers
+		
 			
 			if (pix[0]==PointerColor && pix[1]=='0' && pix[2]=='0') {
 					return true;
