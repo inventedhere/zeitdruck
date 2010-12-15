@@ -11,7 +11,7 @@ body {
 	padding:0;
 	background:#fff;
 	overflow:hidden;
-	background-image:url(bg.png);
+	background-image:url(media/bg.png);
 	background-repeat:repeat-x;
 	font-family:Calibri, sans-serif;
 	}
@@ -71,14 +71,14 @@ em {
 }
 
 #restart:link, #restart:visited {
-	background-image:url(finished.png);
+	background-image:url(media/finished.png);
 	display:block;
 	width:300px;
 	height:95px;
 }
 
 #restart:hover, #restart:active {
-	background-image:url(restart.png);
+	background-image:url(media/restart.png);
 	display:block;
 	width:300px;
 	height:95px;
