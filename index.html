@@ -8,6 +8,7 @@
 <script language="JavaScript">
 <!--
 	var PointerColor;
+	var fade = 0; //sets the alpha channel for fading out the drag image
 	// Farben setzen
 	var innercolor="rgb(255,255,255)"; // Innere Farbe des Ziffernblatts
 	var backgroundcolor="rgb(255,255,255)"; //Hintergrundfarbe des Ziffernblatts
@@ -16,7 +17,7 @@
 	var tickcolor="rgb(0,0,0)"; // Farbe der Markierungen auf dem Ziffernblatt
 	var basepincolor="rgb(255,0,0)"; //Der kleine Kreis in der Mitte standartfarbe
 	var handoutlinecolor="rgb(100,0,0)"; //Farbe des Zeigerrandes
-	var dragcolor="rgb(200,200,200)"; //Farbe des Zeigers beim draggen
+	var dragcolor="rgb(255,0,0)"; //Farbe des Zeigers beim draggen
 	var handcolor=basehandcolor;
 	var pincolor=basepincolor;
 	var soundToPlay='gong' //Choose 'gong' or 'bell'
@@ -24,10 +25,11 @@
 	var gLockMinutes = true; //Beim draggen immer auf ganze Minuten locken?
 	var gShowMinutes = false; //Zeigt ständig den Rest der Zeit an.
 	var gPause=false;
+	var gWillChangeColorWithTime = false; //Decide wether the hand color shall change over time or not
 	
 	//initialize drag-image
-	var draggingImg=new Image();
-	draggingImg.src='drag.png';
+	var dragIMG=new Image();
+	dragIMG.src='drag.png';
 	
 	//Variablen mit globalem scope initialisieren
 	var zeitverlauf;
@@ -67,6 +69,8 @@
         	hintergrund.beginPath();
         	hintergrund.arc(startingpointH,startingpointV,radius+20,0,2*Math.PI,true)
         	hintergrund.fill();
+        	
+        	hintergrund.drawImage(dragIMG,startingpointH-radius/1.1,startingpointV-radius/2.5,radius/1.75,(radius/1.75)*(dragIMG.height/dragIMG.width));
         	
         	//Tickmarks malen und Zeiten dazu
         	for (var i = 1; i <= 60; i++) {
@@ -113,13 +117,22 @@
         	//Kreis in der Mitte
         	//zeiger.strokeStyle=handoutlinecolor;
         	zeiger.arc(startingpointH,startingpointV,25,0,2*Math.PI,true)
-		PointerColor = Math.round(100.0+(255-150)*(1.0-(zeitverlauf/3600.0)));
+        	
+        if(gWillChangeColorWithTime==true){
+			PointerColor = Math.round(100.0+(255-150)*(1.0-(zeitverlauf/3600.0)));
+		} else {
+			PointerColor = 255;
+		}
 		//console.log())
 		zeiger.fillStyle = 'rgb(' + PointerColor + ' ,0,0)';
         	//zeiger.stroke();
         	zeiger.fill();
-        	//hintergrund.drawImage(draggingImg,250,250,draggingImg.width,draggingImg.height);
-   
+        	
+        	hintergrund.drawImage(dragIMG,startingpointH-radius/1.1,startingpointV-radius/2.5,radius/1.75,(radius/1.75)*(dragIMG.height/dragIMG.width));
+        	
+        	hintergrund.fillStyle="rgba(255,255,255,"+fade+")";
+   			hintergrund.fillRect(startingpointH-radius/1.1,startingpointV-radius/2.5,radius/1.75,(radius/1.75)*(dragIMG.height/dragIMG.width));
+   			
            	//Reinschreiben, wo wir stehen
            	if (gShowMinutes==true) {
 				zeiger.fillStyle="rgb(0,0,0)";
@@ -144,6 +157,10 @@
 		//x und y rausfinden vom aktuellen punkt
 		var xdrag = relativZumCanvas(e,'x');
 		var ydrag = relativZumCanvas(e,'y');
+
+			if (zeitverlauf!=tempZeitverlauf) {
+				fade = fade + 0.1 ; //Faden nur bei wirklicher Änderung der Sekunden
+			}
 	
 		//Bezugssystem auf Kreismittelpunkt setzen
 		var a = xdrag - startingpointH;
@@ -174,8 +191,11 @@
 		if (gLockMinutes==false && alpha != '') {
 			zeitverlauf=(alpha/360)*3600;
 		} else if (alpha != '') {
+			var tempZeitverlauf = zeitverlauf;
 			zeitverlauf=(Math.round(((alpha/360)*3600)/60))*60;
 		}
+		
+	
 		
 		if (zeitverlauf==0) {
 			zeitverlauf=60;
