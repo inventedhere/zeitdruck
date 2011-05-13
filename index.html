@@ -49,12 +49,12 @@
 		draw();
 	}
 
-	
+
 	//Diese Funktion erstellt den Hintergrund mit dem Ziffernblatt
 	function drawBackground() {
 
          	//Hintergrund komplett löschen, damit er neu gezeichnet werden kann
-          	hintergrund.clearRect(0,0,1950,1080);
+          hintergrund.clearRect(0,0,1950,1080);
         	
         	//drawing the white ring for the clock
         	hintergrund.fillStyle = outerringcolor; 
@@ -86,33 +86,13 @@
         	// Zeiten draunschreiben
         	hintergrund.font = "bold 15pt Calibri";
         	hintergrund.fillStyle=tickcolor;
-        	hintergrund.fillText('30',startingpointH-10,startingpointV+radius+55);
-        	hintergrund.fillText('60',startingpointH-10,startingpointV-radius-45);
-        	hintergrund.fillText('45',startingpointH+radius+45,startingpointV+5);
-        	hintergrund.fillText('15',startingpointH-radius-65,startingpointV+5);
 
-			//Linke Hälfte
-			for (var i = 1; i <= 5; i++) {
-				if(i==3) {
-				} else {
-					hintergrund.save();
-        			hintergrund.translate(startingpointH,startingpointV);
-        			hintergrund.rotate((-Math.PI/2)*i/3);
-        			hintergrund.fillText(i*5,-10,-radius-45);
-        			hintergrund.restore();
-        		}
-			}
-			
-			//Rechte Hälfte
-			for (var i = 12; i >= 7; i--) {
-				if(i==9) {
-				} else {
-					hintergrund.save();
-        			hintergrund.translate(startingpointH,startingpointV);
-        			hintergrund.rotate((-Math.PI/2)*i/3);
-        			hintergrund.fillText(i*5,-10,-radius-45);
-        			hintergrund.restore();
-        		}
+			    for (var i = 1; i <= 12; i++) {
+					  hintergrund.save();
+        	  hintergrund.translate(startingpointH,startingpointV);
+            hintergrund.rotate((-Math.PI/2)*i/3);
+        	  hintergrund.fillText(i*5,-10,-radius-45);
+        	  hintergrund.restore();
 			}
 	}
 
