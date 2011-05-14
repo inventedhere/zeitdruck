@@ -27,6 +27,7 @@
 	var gShowMinutes = false; //Zeigt ständig den Rest der Zeit an.
 	var gPause=false;
 	var gWillChangeColorWithTime = false; //Decide wether the hand color shall change over time or not
+  var gCountdown = true;
 	
 	//initialize drag-image
 	var dragIMG=new Image();
@@ -169,14 +170,30 @@
 				zeiger.textAlign="center";
 				zeiger.fillText(Math.round(zeitverlauf/60),startingpointH+1,startingpointV+8);
 			}
+
+  /*if (gCountdown==true)
+  {
+    			//zeiger.fillStyle="rgb(255,255,255)";
+    			//zeiger.fillRect(startingpointH-10,startingpointV-11,8,22);
+    			//zeiger.fillRect(startingpointH+2,startingpointV-11,8,22);
+      			zeiger.drawImage(pauseIMG,startingpointH-radius/20,startingpointV-radius/20,radius/10,(radius/10)*(pauseIMG.height/pauseIMG.width));
+
+     }*/
+
 			
 			//Wenn Pause, dann Pausensymbol mitmalen
-			if (gPause==true) {
+/*		
+      if (gPause==true) {
     			//zeiger.fillStyle="rgb(255,255,255)";
     			//zeiger.fillRect(startingpointH-10,startingpointV-11,8,22);
     			//zeiger.fillRect(startingpointH+2,startingpointV-11,8,22);
        			zeiger.drawImage(pauseIMG,startingpointH-radius/20,startingpointV-radius/20,radius/10,(radius/10)*(pauseIMG.height/pauseIMG.width));
+<<<<<<< HEAD
+
+    			}*/
+=======
     			}
+>>>>>>> 84b7344612db44a67ddbc5c6268378159a59989f
     			
         	
   	} 
@@ -265,8 +282,6 @@
 			
 			// Pixeldaten vom context holen, gibt array zurück [R],[G],[B],[Alpha]
 			var pix = zeiger.getImageData(relativZumCanvas(e,'x'), relativZumCanvas(e,'y'), 1, 1).data;
-			
-			console.log("klicked");
 			
 			if (pix[0]==PointerColor && pix[1]=='0' && pix[2]=='0') {
 					return true;
