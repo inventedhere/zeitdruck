@@ -150,13 +150,14 @@
 			}
 			
 			//Wenn Pause, dann Pausensymbol mitmalen
-			if (gPause==true) {
+/*		
+      if (gPause==true) {
     			//zeiger.fillStyle="rgb(255,255,255)";
     			//zeiger.fillRect(startingpointH-10,startingpointV-11,8,22);
     			//zeiger.fillRect(startingpointH+2,startingpointV-11,8,22);
        			zeiger.drawImage(pauseIMG,startingpointH-radius/20,startingpointV-radius/20,radius/10,(radius/10)*(pauseIMG.height/pauseIMG.width));
 
-    			}
+    			}*/
     			
         	
   	} 
@@ -245,8 +246,6 @@
 			
 			// Pixeldaten vom context holen, gibt array zurück [R],[G],[B],[Alpha]
 			var pix = zeiger.getImageData(relativZumCanvas(e,'x'), relativZumCanvas(e,'y'), 1, 1).data;
-			
-			console.log("klicked");
 			
 			if (pix[0]==PointerColor && pix[1]=='0' && pix[2]=='0') {
 					return true;
