@@ -28,6 +28,7 @@
 	var gShowMinutes = false; //Zeigt ständig den Rest der Zeit an.
 	var gPause=false;
 	var gWillChangeColorWithTime = false; //Decide wether the hand color shall change over time or not
+  var gCountdown = true;
 	
 	//initialize drag-image
 	var dragIMG=new Image();
@@ -149,6 +150,16 @@
 				zeiger.textAlign="center";
 				zeiger.fillText(Math.round(zeitverlauf/60),startingpointH+1,startingpointV+8);
 			}
+
+  /*if (gCountdown==true)
+  {
+    			//zeiger.fillStyle="rgb(255,255,255)";
+    			//zeiger.fillRect(startingpointH-10,startingpointV-11,8,22);
+    			//zeiger.fillRect(startingpointH+2,startingpointV-11,8,22);
+      			zeiger.drawImage(pauseIMG,startingpointH-radius/20,startingpointV-radius/20,radius/10,(radius/10)*(pauseIMG.height/pauseIMG.width));
+
+     }*/
+
 			
 			//Wenn Pause, dann Pausensymbol mitmalen
 /*		
