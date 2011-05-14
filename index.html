@@ -9,6 +9,7 @@
 <!--
 	var PointerColor;
 	var fade = 0; //sets the alpha channel for fading out the drag image
+	var timing = false; //set timing to false in the beginning to let the program know that now timer is running
 	// Farben setzen
 	var innercolor="rgb(255,255,255)"; // Innere Farbe des Ziffernblatts
 	var backgroundcolor="rgb(255,255,255)"; //Hintergrundfarbe des Ziffernblatts
@@ -152,7 +153,7 @@
     			//zeiger.fillStyle="rgb(255,255,255)";
     			//zeiger.fillRect(startingpointH-10,startingpointV-11,8,22);
     			//zeiger.fillRect(startingpointH+2,startingpointV-11,8,22);
-       			zeiger.drawImage(pauseIMG,startingpointH-radius/24,startingpointV-radius/24,radius/12,(radius/12)*(pauseIMG.height/pauseIMG.width));
+       			zeiger.drawImage(pauseIMG,startingpointH-radius/24,startingpointV-radius/24,radius/10,(radius/10)*(pauseIMG.height/pauseIMG.width));
 
     			}
     			
@@ -326,7 +327,10 @@
 			zeigercanvas.removeEventListener("mousemove", ZeigerZiehen, false);
 			//Standart Mouseover wieder aktivieren
 			zeigercanvas.addEventListener("mousemove", ZeigerUeberfahren, false);
-			var timing = window.setInterval("draw();if(gPause==false && zeitverlauf>0){zeitverlauf--}", 1000);
+			console.log(timing);
+			if(timing==false){
+			timing = window.setInterval("draw();if(gPause==false && zeitverlauf>0){zeitverlauf--}", 1000);
+			}
     }
     
     //HEX zu RGB Werten von javascriptpeter.net
