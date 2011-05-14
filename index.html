@@ -31,6 +31,12 @@
 	var dragIMG=new Image();
 	dragIMG.src='drag.png';
 	
+	var pauseIMG=new Image();
+	pauseIMG.src='pause.png';
+	
+	var playIMG=new Image();
+	playIMG.src='play.png';
+	
 	//Variablen mit globalem scope initialisieren
 	var zeitverlauf;
 	var zeigercanvas;
@@ -143,9 +149,11 @@
 			
 			//Wenn Pause, dann Pausensymbol mitmalen
 			if (gPause==true) {
-    			zeiger.fillStyle="rgb(255,255,255)";
-    			zeiger.fillRect(startingpointH-10,startingpointV-11,8,22);
-    			zeiger.fillRect(startingpointH+2,startingpointV-11,8,22);
+    			//zeiger.fillStyle="rgb(255,255,255)";
+    			//zeiger.fillRect(startingpointH-10,startingpointV-11,8,22);
+    			//zeiger.fillRect(startingpointH+2,startingpointV-11,8,22);
+       			zeiger.drawImage(pauseIMG,startingpointH-radius/24,startingpointV-radius/24,radius/12,(radius/12)*(pauseIMG.height/pauseIMG.width));
+
     			}
     			
         	
@@ -258,19 +266,22 @@
         		zeiger.arc(startingpointH,startingpointV,25,0,2*Math.PI,true)
         		zeiger.fill();
         		
-        		zeiger.fillStyle="rgb(255,255,255)";
-    			zeiger.beginPath();
-    			zeiger.moveTo(startingpointH-6,startingpointV-11);
-    			zeiger.lineTo(startingpointH+10,startingpointV);
-    			zeiger.lineTo(startingpointH-6,startingpointV+11);
-    			zeiger.lineTo(startingpointH-6,startingpointV-11);
-    			zeiger.fill();
+        		//zeiger.fillStyle="rgb(255,255,255)";
+    			//zeiger.beginPath();
+    			//zeiger.moveTo(startingpointH-6,startingpointV-11);
+    			//zeiger.lineTo(startingpointH+10,startingpointV);
+    			//zeiger.lineTo(startingpointH-6,startingpointV+11);
+    			//zeiger.lineTo(startingpointH-6,startingpointV-11);
+    			//zeiger.fill();
+    			zeiger.drawImage(playIMG,startingpointH-radius/24,startingpointV-radius/24,radius/12,(radius/12)*(playIMG.height/playIMG.width));
     			gPause=false;
     		} else {
 				gPause=true;
-				zeiger.fillStyle="rgb(255,255,255)";
-    			zeiger.fillRect(startingpointH-10,startingpointV-11,8,22);
-    			zeiger.fillRect(startingpointH+2,startingpointV-11,8,22);
+				//zeiger.fillStyle="rgb(255,255,255)";
+    			//zeiger.fillRect(startingpointH-10,startingpointV-11,8,22);
+    			//zeiger.fillRect(startingpointH+2,startingpointV-11,8,22);
+    			zeiger.drawImage(pauseIMG,startingpointH-radius/24,startingpointV-radius/24,radius/12,(radius/12)*(pauseIMG.height/pauseIMG.width));
+
     		}
     	} else if (e.keyCode==38){
     	    //5 Minuten runter
