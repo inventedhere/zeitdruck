@@ -315,6 +315,7 @@
 			zeigercanvas.removeEventListener("mousemove", ZeigerZiehen, false);
 			//Standart Mouseover wieder aktivieren
 			zeigercanvas.addEventListener("mousemove", ZeigerUeberfahren, false);
+			var timing = window.setInterval("draw();if(gPause==false && zeitverlauf>0){zeitverlauf--}", 1000);
     }
     
     //HEX zu RGB Werten von javascriptpeter.net
@@ -366,7 +367,7 @@
 		//Auf keyboardinput warten
 		window.addEventListener("keydown",TastenDruck,false);
 		
-		var timing = window.setInterval("draw();if(gPause==false && zeitverlauf>0){zeitverlauf--}", 1000);
+		
 		
 		//Click Eventhandler anlegen PC/MAC
         zeigercanvas.addEventListener("mousedown", function(e){
