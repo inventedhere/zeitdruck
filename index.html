@@ -78,6 +78,7 @@
         	hintergrund.arc(startingpointH,startingpointV,radius+15,0,2*Math.PI,true)
         	hintergrund.fill();
         	
+        	
         	hintergrund.drawImage(dragIMG,startingpointH-radius/1.1,startingpointV-radius/2.5,radius/1.75,(radius/1.75)*(dragIMG.height/dragIMG.width));
         	
         	//Tickmarks malen und Zeiten dazu
@@ -363,7 +364,6 @@
 		document.getElementById('finished').style.display = 'none' ;
 		//re-display the hand canvas
 		document.getElementById('zeiger').style.display = 'block' ;
-
 	
 		//Read preset from url
 		//var presetTime = 60*window.location.href.substring(window.location.href.search('#')+1,window.location.href.length);
@@ -436,9 +436,12 @@ function finishTimer() {
 	document.getElementById('zeiger').style.display = 'none' ;
 	
  	//Move the Time is up box to the middle and show it!
-	document.getElementById('finished').style.left = ((winW/2)-150)+"px" ;
-	document.getElementById('finished').style.top = ((winH/2)-48)+"px" ;
-	document.getElementById('finished').style.display = 'block';
+ 	var finishedIMG = document.getElementById('finished');
+ 	finishedIMG.width = radius*1.25;
+ 	finishedIMG.height = radius/(2/1.25);
+	finishedIMG.style.left = ((winW/2)-(finishedIMG.width/2))+"px";
+	finishedIMG.style.top = ((winH/2)-(finishedIMG.height/2))+"px" ;
+	finishedIMG.style.display = 'block';
 }
 
 function flash(count,run,up) {
@@ -452,7 +455,7 @@ function flash(count,run,up) {
 	//Making the inner Background of the clock flash
         hintergrund.fillStyle = "rgb(255,"+count+","+count+")";
         hintergrund.beginPath();
-        hintergrund.arc(startingpointH,startingpointV,radius+20,0,2*Math.PI,true);
+        hintergrund.arc(startingpointH,startingpointV,radius+15,0,2*Math.PI,true);
         hintergrund.fill();
       //Tickmarks malen und Zeiten dazu
       	for (var i = 1; i <= 60; i++) {
@@ -462,9 +465,9 @@ function flash(count,run,up) {
         	hintergrund.rotate(-(Math.PI/2)-((2*Math.PI)*(i/60)));
         	// die 5 Minütigen sollen dicker
         	if ((i%5)==0) {
-        		hintergrund.fillRect(-5,-radius-25,10,15);
+        		hintergrund.fillRect(-5,-radius-20,10,15);
         	} else {
-        		hintergrund.fillRect(-1,-radius-28,2,12);
+        		hintergrund.fillRect(-1,-radius-23,2,12);
         	}
         	hintergrund.restore();
         }
@@ -516,7 +519,6 @@ function EvalSound(soundobj) {
 
 <body onload="start('600');" onResize="setCanvasSize()">
 
-	
 <embed src="media/boxingbell.wav" autostart=false width=0 height=0 id="bell" enablejavascript="true">
 	
 	<canvas id="zeiger" width="1980" height="1080"></canvas>
@@ -533,11 +535,9 @@ function EvalSound(soundobj) {
 	</div>
 
 	<div id="version">
-		 v.0.8b&nbsp;12/14/2010&nbsp;19:06
+		 v.0.9b&nbsp;2011-05-14
 	</div>
 	
-	<div id="finished">
-		<a id="restart" onclick="start('600')" href=""></a>
-	</div>
+	<img src="media/finished.png" id="finished" onMouseMove="this.src='media/restart.png'" onMouseOut="this.src='media/finished.png'" onclick="start('600')" />
 </body>
 </html>
