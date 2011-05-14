@@ -70,6 +70,22 @@ em {
 	z-index:4;
 }
 
+
+@-webkit-keyframes #restart {
+  from {
+    -webkit-transform: scale(1.0);
+    opacity: 0.75;
+  }
+  50% {
+    -webkit-transform: scale(1.2);
+    opacity: 1.0;
+  }
+  to { 
+    -webkit-transform: scale(1.0);
+    opacity: 0.75;
+  }
+}
+
 #restart:link, #restart:visited {
 	background-image:url(media/finished.png);
 	display:block;
@@ -82,4 +98,8 @@ em {
 	display:block;
 	width:300px;
 	height:95px;
+  -webkit-animation-name: pulse; 
+  -webkit-animation-duration: 0.3s; 
+  -webkit-animation-iteration-count: 1; 
+}
 }

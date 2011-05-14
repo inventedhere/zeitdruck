@@ -10,6 +10,7 @@
 	var PointerColor;
 	var fade = 0; //sets the alpha channel for fading out the drag image
 	var timing = false; //set timing to false in the beginning to let the program know that now timer is running
+	var presetTime = false;
 	// Farben setzen
 	var innercolor="rgb(255,255,255)"; // Innere Farbe des Ziffernblatts
 	var backgroundcolor="rgb(255,255,255)"; //Hintergrundfarbe des Ziffernblatts
@@ -21,7 +22,7 @@
 	var dragcolor="rgb(255,0,0)"; //Farbe des Zeigers beim draggen
 	var handcolor=basehandcolor;
 	var pincolor=basepincolor;
-	var soundToPlay='gong' //Choose 'gong' or 'bell'
+	var soundToPlay='bell' //Choose 'gong' or 'bell'
 	
 	var gLockMinutes = true; //Beim draggen immer auf ganze Minuten locken?
 	var gShowMinutes = false; //Zeigt ständig den Rest der Zeit an.
@@ -257,14 +258,14 @@
     }
     
     function TastenDruck(e) {
-    	
+    	/*
     	if(e.keyCode==32) {
     		
     		if(gPause==true){
     			//Pin übermalen und Play-Symbol malen
         		zeiger.fillStyle = pincolor; 
         		zeiger.beginPath();
-        		zeiger.arc(startingpointH,startingpointV,25,0,2*Math.PI,true)
+        		zeiger.arc(startingpointH,startingpointV,radius/12,0,2*Math.PI,true)
         		zeiger.fill();
         		
         		//zeiger.fillStyle="rgb(255,255,255)";
@@ -284,7 +285,8 @@
     			zeiger.drawImage(pauseIMG,startingpointH-radius/20,startingpointV-radius/20,radius/10,(radius/10)*(pauseIMG.height/pauseIMG.width));
 
     		}
-    	} else if (e.keyCode==38){
+    	*/
+    	if (e.keyCode==38){
     	    //5 Minuten runter
     	    if (zeitverlauf<300) {
     	    	zeitverlauf=0;
@@ -327,9 +329,9 @@
 			zeigercanvas.removeEventListener("mousemove", ZeigerZiehen, false);
 			//Standart Mouseover wieder aktivieren
 			zeigercanvas.addEventListener("mousemove", ZeigerUeberfahren, false);
-			console.log(timing);
+			
 			if(timing==false){
-			timing = window.setInterval("draw();if(gPause==false && zeitverlauf>0){zeitverlauf--}", 1000);
+				timing = window.setInterval("draw();if(gPause==false && zeitverlauf>0){zeitverlauf--}", 1000);
 			}
     }
     
@@ -361,7 +363,13 @@
 
 	
 		//Read preset from url
-		var presetTime = 60*window.location.href.substring(window.location.href.search('#')+1,window.location.href.length);
+		//var presetTime = 60*window.location.href.substring(window.location.href.search('#')+1,window.location.href.length);
+		//console.log("PresetTime = " + presetTime);
+		
+		//if (presetTime>0) {
+			//timing = window.setInterval("draw();if(gPause==false && zeitverlauf>0){zeitverlauf--}", 1000);
+			//fade=0; //don't show tutorial
+		//}
 	
 		//Zeigercanvas initialisieren
 		zeigercanvas = document.getElementById('zeiger'); 
@@ -506,7 +514,7 @@ function EvalSound(soundobj) {
 <body onload="start('600');" onResize="setCanvasSize()">
 
 	
-<embed src="media/gong.wav" autostart=false width=0 height=0 id="bell" enablejavascript="true">
+<embed src="media/boxingbell.wav" autostart=false width=0 height=0 id="bell" enablejavascript="true">
 	
 	<canvas id="zeiger" width="1980" height="1080"></canvas>
 	
@@ -519,8 +527,6 @@ function EvalSound(soundobj) {
 		<img src="media/logo.png" width="220"/>
 		<h3>Why use zeitdruck?</h3>
 		<p>A task expands to the amount of time you allow for it. That's why we believe in strict time constraints. We achieve this by using a visual count-down timer: <b>zeitdruck</b>.</p>
-		<h3>How to</h3>
-		<p>Drag the hand to set the time.</br>It immediateley starts ticking down.</br>Use [space] to pause if you need a break.</br> [&larr;][&rarr;] to add/substract 1 minute.</br> [&uarr;][&darr;] to add/substract 5 minutes.  </p>
 	</div>
 
 	<div id="version">
