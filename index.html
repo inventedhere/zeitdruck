@@ -293,6 +293,7 @@
     	    } else {
     			zeitverlauf=zeitverlauf-5*60;
     		}
+    		fade = 1;
     		draw();
     	} else if (e.keyCode==40) {
     		//5 Minuten rauf
@@ -301,6 +302,7 @@
     		} else {
     			zeitverlauf=zeitverlauf+5*60;
     		}
+    		fade = 1;
     		draw();
     	} else if (e.keyCode==39) {
     		//1 Minute rauf
@@ -309,6 +311,7 @@
     		} else {
     			zeitverlauf=zeitverlauf+1*60;
     		}
+    		fade = 1;
     		draw();    	
     	} else if (e.keyCode==37) {
     		//1 Minute runter
@@ -317,6 +320,7 @@
     		} else {
     			zeitverlauf=zeitverlauf-1*60;
     		}
+    		fade = 1;
     		draw();    	
     	}
     }
