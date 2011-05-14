@@ -67,7 +67,7 @@
         	//drawing the inner background for the clock
         	hintergrund.fillStyle = innercolor; 
         	hintergrund.beginPath();
-        	hintergrund.arc(startingpointH,startingpointV,radius+20,0,2*Math.PI,true)
+        	hintergrund.arc(startingpointH,startingpointV,radius+15,0,2*Math.PI,true)
         	hintergrund.fill();
         	
         	hintergrund.drawImage(dragIMG,startingpointH-radius/1.1,startingpointV-radius/2.5,radius/1.75,(radius/1.75)*(dragIMG.height/dragIMG.width));
@@ -80,9 +80,9 @@
         		hintergrund.rotate(-(Math.PI/2)-((2*Math.PI)*(i/60)));
         		// die 5 Minütigen sollen dicker
         		if ((i%5)==0) {
-        			hintergrund.fillRect(-5,-radius-25,10,15);
+        			hintergrund.fillRect(-5,-radius-20,10,15);
         		} else {
-        			hintergrund.fillRect(-1,-radius-28,2,12);
+        			hintergrund.fillRect(-1,-radius-23,2,12);
         		}
         		hintergrund.restore();
         	}
@@ -112,7 +112,7 @@
         	zeiger.beginPath();    
         	zeiger.moveTo(startingpointH,startingpointV)
         	zeiger.lineTo(startingpointH,startingpointV-radius);
-        	zeiger.arc(startingpointH,startingpointV,radius,-Math.PI/2,-Math.PI/2-((zeitverlauf/1800)*Math.PI),true);
+        	zeiger.arc(startingpointH,startingpointV,radius-5,-Math.PI/2,-Math.PI/2-((zeitverlauf/1800)*Math.PI),true);
         	zeiger.lineTo(startingpointH,startingpointV);
         	//Kreis in der Mitte
         	//zeiger.strokeStyle=handoutlinecolor;
