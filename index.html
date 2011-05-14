@@ -22,7 +22,6 @@
 	var dragcolor="rgb(255,0,0)"; //Farbe des Zeigers beim draggen
 	var handcolor=basehandcolor;
 	var pincolor=basepincolor;
-	var soundToPlay='bell' //Choose 'gong' or 'bell'
 	
 	var gLockMinutes = true; //Beim draggen immer auf ganze Minuten locken?
 	var gShowMinutes = false; //Zeigt ständig den Rest der Zeit an.
@@ -338,6 +337,8 @@
 			if(timing==false){
 				timing = window.setInterval("draw();if(gPause==false && zeitverlauf>0){zeitverlauf--}", 1000);
 			}
+			//Play the ticker
+			EvalSound("ticker");
     }
     
     //HEX zu RGB Werten von javascriptpeter.net
@@ -429,7 +430,7 @@
 	
 function finishTimer() {
 	//Play the sound
-	EvalSound(soundToPlay);
+	EvalSound("bell");
 	//make the clock flash a few times (startingcolor, times to flash, up or down)
 	flash(255,6,false);
 	//release time eventlistener and kill the hand
@@ -521,6 +522,8 @@ function EvalSound(soundobj) {
 <body onload="start('600');" onResize="setCanvasSize()">
 
 <embed src="media/boxingbell.wav" autostart=false width=0 height=0 id="bell" enablejavascript="true">
+<embed src="media/ticker.mp3" autostart=false width=0 height=0 id="ticker" enablejavascript="true">
+
 	
 	<canvas id="zeiger" width="1980" height="1080"></canvas>
 	
