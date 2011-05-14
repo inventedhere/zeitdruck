@@ -54,6 +54,12 @@
 		startingpointV = winH/2;
 		startingpointH = winW/2;
 		radius = (winH-200)/2;
+ 		//Move the Time is up box to the middle and show it!
+ 		var finishedIMG = document.getElementById('finished');
+ 		finishedIMG.width = radius*1.25;
+ 		finishedIMG.height = radius/(2/1.25);
+		finishedIMG.style.left = ((winW/2)-(finishedIMG.width/2))+"px";
+		finishedIMG.style.top = ((winH/2)-(finishedIMG.height/2))+"px" ;
 		drawBackground();
 		draw();
 	}
@@ -155,7 +161,6 @@
     			//zeiger.fillRect(startingpointH-10,startingpointV-11,8,22);
     			//zeiger.fillRect(startingpointH+2,startingpointV-11,8,22);
        			zeiger.drawImage(pauseIMG,startingpointH-radius/20,startingpointV-radius/20,radius/10,(radius/10)*(pauseIMG.height/pauseIMG.width));
-
     			}
     			
         	
